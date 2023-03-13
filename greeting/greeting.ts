@@ -1,9 +1,9 @@
 export const standins: string[] = [
-  "friend",
-  "amigo",
-  "stranger",
-  "dude",
-  "guy",
+  'friend',
+  'amigo',
+  'stranger',
+  'dude',
+  'guy',
 ];
 
 export function standin() {
@@ -11,7 +11,7 @@ export function standin() {
 }
 
 export function isShouted(name: string): boolean {
-  const chars = name.split("");
+  const chars = name.split('');
   return chars.every((c) => c === c.toUpperCase());
 }
 
@@ -24,7 +24,7 @@ export function greetMultiple(input: string[]): string {
 
   const [lower, upper] = names;
 
-  let output = "Hello";
+  let output = 'Hello';
   lower.forEach((name, i) => {
     if (i < lower.length - 1) {
       output += `, ${name}`;
@@ -42,21 +42,21 @@ export function greetMultiple(input: string[]): string {
 }
 
 function split(input: string | string[]): string | string[] {
-  if (typeof input === "string") {
-    if (!input.includes(",")) return input;
-    return input.replaceAll(" ", "").split(",");
+  if (typeof input === 'string') {
+    if (!input.includes(',')) return input;
+    return input.replaceAll(' ', '').split(',');
   }
-  return input.map((s) => s.replaceAll(" ", "").split(",")).flat();
+  return input.map((s) => s.replaceAll(' ', '').split(',')).flat();
 }
 
 export default function greet(input?: string | string[]): string {
   if (!input) return `Hello, ${standin()}`;
 
-  input = split(input);
-  if (typeof input !== "string") return greetMultiple(input);
+  const names = split(input);
+  if (typeof names !== 'string') return greetMultiple(names);
 
-  const chars = input.split("");
-  if (chars.every((c) => c === c.toUpperCase())) return `HELLO ${input}!`;
+  const chars = names.split('');
+  if (chars.every((c) => c === c.toUpperCase())) return `HELLO ${names}!`;
 
-  return `Hello, ${input}`;
+  return `Hello, ${names}`;
 }
