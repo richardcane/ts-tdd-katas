@@ -1,4 +1,4 @@
-import greet, { standins, standin, isShouted } from "./greeting";
+import greet, { standins } from "./greeting";
 
 describe("greet", () => {
   it("exists", () => {
